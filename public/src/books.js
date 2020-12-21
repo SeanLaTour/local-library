@@ -7,9 +7,9 @@ function findBookById(books, id) {
 }
 
 function partitionBooksByBorrowedStatus(books) {
-  findFalse = books.filter(book => book.borrows[0].returned == false);
-  findTrue = books.filter(book => book.borrows[0].returned == true);
-  const returnArray = [[...findFalse], [...findTrue]]
+  let falseBook = books.filter(book => book.borrows[0].returned == false);
+  let trueBook = books.filter(book => book.borrows[0].returned == true);
+  const returnArray = [[...falseBook], [...trueBook]]
   return returnArray;
 }
 

@@ -65,8 +65,14 @@ function getMostPopularAuthors(books, authors) {
   tempArray.forEach(bookObj => authors.find(author => {if (bookObj.authorId === author.id) bookObj.author = author}));
   // Isolate the top five authors
   tempArray.length = 5;
-  // Reduce objects into proper format
-  returnArray = tempArray.reduce((array, bookObj) => {
+  // Reduce objects into proper format and return with helper function
+  return reductionHelper(tempArray, authors);
+  
+}
+
+// Here is my helper function
+function reductionHelper (tempArray, authors) {
+    returnArray = tempArray.reduce((array, bookObj) => {
     let obj = {};
     let authorName = "";
     authors.forEach(author =>  {if (author.id === bookObj.authorId) authorName = `${author.name.first} ${author.name.last}`});
@@ -74,10 +80,9 @@ function getMostPopularAuthors(books, authors) {
     obj.count = bookObj.count;
     array.push(obj);
     return array;
-  }, [])
-  console.log(JSON.stringify(returnArray));
+  }, []);
   return returnArray;
-}
+} 
 
 module.exports = {
   totalBooksCount,

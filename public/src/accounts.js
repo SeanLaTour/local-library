@@ -25,8 +25,8 @@ function getBooksPossessedByAccount(account, books, authors) {
   let bookArray = [];
   let foundArray = [];
   // Isolate books checked out by user
-  const getBookArray = Object.values(books).filter(book=> book.borrows);
-  getBookArray.filter(bookGroup => bookGroup.borrows.find(book => 
+  const tempBookArray = Object.values(books).filter(book=> book.borrows);
+  tempBookArray.filter(bookGroup => bookGroup.borrows.find(book => 
     {if (book.returned === false) bookArray.push(bookGroup)}));
   bookArray.forEach(bookObject => bookObject.borrows.find(book => 
     {if (book.id == account.id && book.returned == false) foundArray.push(bookObject)}));
